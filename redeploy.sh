@@ -10,8 +10,8 @@ lsof -t -i:3002 | xargs kill -9 2>/dev/null || true
 lsof -t -i:3001 | xargs kill -9 2>/dev/null || true
 
 # Pull latest code
-#echo "Pulling latest code..."
-#git pull origin main
+echo "Pulling latest code..."
+git pull origin main
 
 # Start server
 echo "Starting server..."
