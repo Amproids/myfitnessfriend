@@ -17,8 +17,6 @@ git reset --hard origin/main
 
 # Set permissions for scripts
 echo "Setting script permissions..."
-chmod 775 start.sh || true
-chmod 775 stop.sh || true
 chmod 775 redeploy.sh || true
 
 # Start server using nohup to keep it running
