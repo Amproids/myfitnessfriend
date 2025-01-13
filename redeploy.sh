@@ -2,7 +2,7 @@
 echo "=== Beginning deployment at $(date) ==="
 
 # Navigate to project directory
-cd ~/myfitnessfriend || exit 1
+cd /home/andrew/myfitnessfriend || exit 1
 
 # Carefully kill only our specific port processes
 echo "Stopping existing processes..."
