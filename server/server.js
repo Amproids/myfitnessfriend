@@ -40,11 +40,11 @@ app.post('/webhook', (req, res) => {
     }
 
     // Check if redeploy.sh exists
-    if (!fs.existsSync('../myfitnessfriend/redeploy.sh')) {
+    if (fs.existsSync('../myfitnessfriend/redeploy.sh')) {
         console.error('Deployment script not found');
         return res.status(404).json({
             status: 'error',
-            message: 'Deployment script not found'
+            message: 'Deployment script found'
         });
     }
 
