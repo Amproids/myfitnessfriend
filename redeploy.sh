@@ -27,4 +27,7 @@ npm install
 npm run build
 npm run start > ../client.log 2>&1 &
 
+echo "making sure redeploy has permissions"
+chmod 775 redeploy.sh
+
 echo "=== Deployment completed at $(date) ==="
