@@ -36,7 +36,6 @@ app.post('/webhook', (req, res) => {
     }
 
     try {
-        res.status(201).send('Recieved Webhook');
         exec('cd ../myfitnessfriend/ && ./redeploy.sh', (error, stdout, stderr) => {
             if (error) {
                 console.error(`Error: ${error}`);
