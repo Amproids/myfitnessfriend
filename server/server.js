@@ -40,7 +40,7 @@ app.post('/webhook', (req, res) => {
     }
 
     // Check if redeploy.sh exists
-    if (!fs.existsSync('~/myfitnessfriend/redeploy.sh')) {
+    if (!fs.existsSync('../myfitnessfriend/redeploy.sh')) {
         console.error('Deployment script not found');
         return res.status(404).json({
             status: 'error',
@@ -49,7 +49,7 @@ app.post('/webhook', (req, res) => {
     }
 
     // Check if directory exists
-    if (!fs.existsSync('~/myfitnessfriend/')) {
+    if (!fs.existsSync('../myfitnessfriend/')) {
         console.error('Target directory not found');
         return res.status(404).json({
             status: 'error',
@@ -57,7 +57,7 @@ app.post('/webhook', (req, res) => {
         });
     }
 
-    exec('cd ~/myfitnessfriend/ && ./redeploy.sh', (error, stdout, stderr) => {
+    exec('cd ../ && ./redeploy.sh', (error, stdout, stderr) => {
         if (error) {
             // Check specific error types
             if (error.code === 'EACCES') {
