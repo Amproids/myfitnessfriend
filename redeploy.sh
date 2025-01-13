@@ -6,8 +6,9 @@ cd /home/andrew/myfitnessfriend || exit 1
 
 # Carefully kill only our specific port processes
 echo "Stopping existing processes..."
-lsof -t -i:3002 | xargs kill -9 2>/dev/null || true
-lsof -t -i:3001 | xargs kill -9 2>/dev/null || true
+for port in 3001 3002; do
+    pkill -f ":$port" || true
+done
 
 # Pull latest code
 echo "Pulling latest code..."
