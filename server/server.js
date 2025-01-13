@@ -1,4 +1,5 @@
 // server.js
+import crypto from 'crypto';
 import express from 'express'
 import cors from 'cors'
 import { fileURLToPath } from 'url'
@@ -15,6 +16,38 @@ const port = process.env.PORT || 3001
 // Middleware
 app.use(cors())
 app.use(express.json())
+
+// Add this with your other environment variables
+const WEBHOOK_SECRET = process.env.WEBHOOK_SECRET;
+
+// Replace your previous webhook endpoint with this secured version
+app.post('/webhook', (req, res) => {
+    console.log('------ Webhook Received ------');
+    console.log('Headers:', req.headers);
+    console.log('Body:', req.body);
+    
+    const signature = req.headers['x-hub-signature-256'];
+    const payload = JSON.stringify(req.body);
+    
+    if (!signature) {
+        console.log('No signature received');
+        return res.status(401).send('No signature');
+    }
+
+    try {
+        exec('cd ~/myfitnessfriend/ && ./redeploy.sh', (error, stdout, stderr) => {
+            if (error) {
+                console.error(`Error: ${error}`);
+                return res.status(500).send('Server Error');
+            }
+            console.log(`Git pull output: ${stdout}`);
+            res.status(200).send('Updated successfully');
+        });
+    } catch (error) {
+        console.error('Error during git pull:', error);
+        res.status(500).send('Server Error');
+    }
+});
 
 // API Routes
 app.get('/api/exercises', async (req, res) => {
