@@ -21,11 +21,11 @@
      inkscape:pagecheckerboard="0"
      inkscape:deskcolor="#d1d1d1"
      inkscape:zoom="23.81"
-     inkscape:cx="9.4288114"
-     inkscape:cy="16.442671"
+     inkscape:cx="9.3868123"
+     inkscape:cy="16.400672"
      inkscape:window-width="1278"
      inkscape:window-height="1351"
-     inkscape:window-x="-8"
+     inkscape:window-x="0"
      inkscape:window-y="590"
      inkscape:window-maximized="0"
      inkscape:current-layer="svg2" />
@@ -37,7 +37,7 @@
      fill="white"
      opacity="0.5"
      id="circle1"
-     style="fill:#e26dc3;fill-opacity:1;opacity:1" />
+     style="fill:#6dcde2;fill-opacity:1;opacity:1" />
   <!-- Head circle -->
   <circle
      cx="12"
