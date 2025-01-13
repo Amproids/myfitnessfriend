@@ -1,10 +1,11 @@
 // server.js
+import { exec } from 'child_process';
 import crypto from 'crypto';
-import express from 'express'
-import cors from 'cors'
-import { fileURLToPath } from 'url'
-import { dirname, join } from 'path'
-import dotenv from 'dotenv'
+import express from 'express';
+import cors from 'cors';
+import { fileURLToPath } from 'url';
+import { dirname, join } from 'path';
+import dotenv from 'dotenv';
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = dirname(__filename)
