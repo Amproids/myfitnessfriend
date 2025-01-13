@@ -31,23 +31,72 @@ app.post('/webhook', (req, res) => {
     
     if (!signature) {
         console.log('No signature received');
-        return res.status(401).send('No signature');
+        return res.status(401).json({
+            status: 'error',
+            message: 'Signature verification failed'
+        });
     }
 
-    try {
-        res.status(201).send('Received Webhook');
-        exec('cd ~/myfitnessfriend/ && ./redeploy.sh', (error, stdout, stderr) => {
-            if (error) {
-                console.error(`Error: ${error}`);
-                return res.status(500).send('Server Error');
-            }
-            console.log(`Git pull output: ${stdout}`);
-            res.status(200).send('Updated successfully');
+    // Check if redeploy.sh exists
+    if (!fs.existsSync('~/myfitnessfriend/redeploy.sh')) {
+        console.error('Deployment script not found');
+        return res.status(404).json({
+            status: 'error',
+            message: 'Deployment script not found'
         });
-    } catch (error) {
-        console.error('Error during git pull:', error);
-        res.status(500).send('Server Error');
     }
+
+    // Check if directory exists
+    if (!fs.existsSync('~/myfitnessfriend/')) {
+        console.error('Target directory not found');
+        return res.status(404).json({
+            status: 'error',
+            message: 'Target directory not found'
+        });
+    }
+
+    exec('cd ~/myfitnessfriend/ && ./redeploy.sh', (error, stdout, stderr) => {
+        if (error) {
+            // Check specific error types
+            if (error.code === 'EACCES') {
+                console.error('Permission denied:', error);
+                return res.status(403).json({
+                    status: 'error',
+                    message: 'Permission denied when executing deployment script'
+                });
+            }
+            
+            if (error.code === 'ENOENT') {
+                console.error('Script or directory not found:', error);
+                return res.status(404).json({
+                    status: 'error',
+                    message: 'Script or directory not found'
+                });
+            }
+
+            console.error('Deployment error:', error);
+            return res.status(500).json({
+                status: 'error',
+                message: 'Deployment execution failed',
+                details: error.message
+            });
+        }
+
+        if (stderr && stderr.toLowerCase().includes('error')) {
+            console.error('Script error output:', stderr);
+            return res.status(500).json({
+                status: 'error',
+                message: 'Deployment script reported an error',
+                details: stderr
+            });
+        }
+
+        console.log('Deployment successful:', stdout);
+        return res.status(200).json({
+            status: 'success',
+            message: 'Deployment completed successfully'
+        });
+    });
 });
 
 // API Routes
