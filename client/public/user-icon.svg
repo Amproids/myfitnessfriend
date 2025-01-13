@@ -1,8 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-  <!-- Background circle -->
-  <circle cx="12" cy="12" r="12" fill="white" opacity="0.5"/>
-  <!-- Head circle -->
-  <circle cx="12" cy="8" r="3.5" fill="currentColor"/>
-  <!-- Body shape - made slightly smaller to fit in circle -->
-  <path d="M18 19v0.5a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 6 19.5V19c0-3.3 2.7-6 6-6h0c3.3 0 6 2.7 6 6z" fill="currentColor"/>
-</svg>
