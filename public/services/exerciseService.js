@@ -1,4 +1,4 @@
-// client/src/services/exerciseService.js
+// /services/exerciseService.js
 const exerciseService = {
     async getExercises(filters = {}) {
         try {

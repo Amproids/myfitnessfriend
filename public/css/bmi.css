@@ -1,0 +1,348 @@
+/* BMI Calculator Styles - Matching Base Styles */
+
+/* Using the base color variables */
+:root {
+    --underweight-color: var(--primary-light);
+    --normal-color: #2ecc71;
+    --overweight-color: #f3d912;
+    --obese1-color: #e67e22;
+    --obese2-color: #e74c3c;
+    --obese3-color: #c0392b;
+    --obese3-gradient: #48150f;
+}
+
+.calculator-container {
+    padding: 2rem 1.5rem;
+    background-color: var(--bg2);
+    border-radius: 0.5rem;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    margin: 2rem auto;
+    max-width: 800px;
+}
+
+/* Hero section styling is already in base.css */
+
+.input-group {
+    margin-bottom: 1.5rem;
+}
+
+label {
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    color: var(--text2);
+}
+
+.toggle-container {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.2rem;
+    margin-left: 1rem;
+}
+
+.toggle-switch {
+    position: relative;
+    box-sizing: border-box;
+    margin: 0 0.2rem;
+    width: 60px;
+    height: 34px;
+    background-color: #ccc;
+    border-radius: 34px;
+    transition: .4s;
+    cursor: pointer;
+}
+
+.toggle-switch:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    border-radius: 50%;
+    transition: .4s;
+}
+
+.unit-toggle {
+    display: none;
+}
+
+.toggle-switch {
+    background-color: var(--primary);
+}
+
+.unit-toggle:checked + .toggle-switch:before {
+    transform: translateX(26px);
+}
+
+.number-inputs {
+    display: flex;
+    gap: 1rem;
+    padding: 1rem;
+}
+.input-with-unit {
+    display: inline-flex;
+    width: fit-content;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+#height-inches {
+    display: none;
+}
+
+.input-with-unit input {
+    width: 70px;
+    padding: 0.75rem;
+    border: 1px solid #ddd;
+    border-radius: 0.375rem;
+    font-size: 1rem;
+    background-color: var(--bg-gray);
+}
+.input-with-unit span {
+    font-weight: 600;
+    color: var(--text2);
+}
+
+.calculate-btn {
+    background-color: var(--primary);
+    color: var(--bg2);
+    border: none;
+    padding: 0.75rem 2rem;
+    font-size: 1.125rem;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    width: 100%;
+    transition: all 0.2s ease-in-out;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+}
+
+.calculate-btn:hover {
+    background-color: var(--primary-dark);
+    transform: translateY(-1px);
+}
+
+.result-container {
+    background-color: var(--bg1);
+    padding: 1.5rem;
+    border-radius: 0.5rem;
+    margin-bottom: 2rem;
+    text-align: center;
+    display: none;
+}
+
+#result {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 0.75rem;
+    color: var(--text2);
+}
+
+#bmi-category {
+    font-size: 1.125rem;
+    margin-bottom: 0.75rem;
+    padding: 0.375rem 0.75rem;
+    border-radius: 0.25rem;
+    display: inline-block;
+    color: white;
+}
+
+#bmi-info {
+    font-size: 1rem;
+    color: var(--text1);
+}
+
+.bmi-chart {
+    margin-top: 2rem;
+}
+
+.bmi-chart h3 {
+    margin-bottom: 1rem;
+    color: var(--text2);
+    font-weight: 600;
+}
+
+.bmi-chart ul {
+    list-style-type: none;
+}
+
+.bmi-chart li {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.75rem;
+}
+
+.category-indicator {
+    width: 1.25rem;
+    height: 1.25rem;
+    border-radius: 0.25rem;
+    margin-right: 0.75rem;
+}
+
+.underweight {
+    background-color: var(--underweight-color);
+}
+
+.normal {
+    background-color: var(--normal-color);
+}
+
+.overweight {
+    background-color: var(--overweight-color);
+}
+
+.obese {
+    background-color: var(--obese1-color);
+}
+
+.obese2 {
+    background-color: var(--obese2-color);
+}
+
+.obese3 {
+    background-color: var(--obese3-color);
+}
+
+.disclaimer {
+    font-size: 0.875rem;
+    color: var(--text1);
+    margin-top: 1.25rem;
+    font-style: italic;
+}
+
+.slider-container {
+    margin: 2.5rem 0;
+    position: relative;
+}
+
+.slider-track {
+    height: 25px;
+    width: 100%;
+    border-radius: 0.375rem;
+    background: linear-gradient(to right, 
+    var(--underweight-color) 0%, 
+    var(--underweight-color) calc((18.5 - 15) / 45 * 100%), 
+    var(--normal-color) calc((18.5 - 15) / 45 * 100%), 
+    var(--normal-color) calc((25 - 15) / 45 * 100%), 
+    var(--overweight-color) calc((25 - 15) / 45 * 100%), 
+    var(--overweight-color) calc((30 - 15) / 45 * 100%), 
+    var(--obese1-color) calc((30 - 15) / 45 * 100%), 
+    var(--obese1-color) calc((35 - 15) / 45 * 100%), 
+    var(--obese2-color) calc((35 - 15) / 45 * 100%), 
+    var(--obese2-color) calc((40 - 15) / 45 * 100%), 
+    var(--obese3-color) calc((40 - 15) / 45 * 100%),
+    var(--obese3-gradient) calc((50 - 15) / 45 * 100%),
+    black 100%);
+}
+
+#skull {
+    float: right;
+    position: relative;
+    right: 4px;
+    top: 4px;
+}
+.slider-labels {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 0.625rem;
+    font-size: 0.875rem;
+    color: var(--text1);
+}
+
+#underweight {
+    margin-left: -6%;
+}
+
+#normal {
+    margin-left: 4%;
+}
+
+#obeseii {
+    margin-right: 32%;
+}
+
+.slider-marker {
+    position: absolute;
+    width: 3px;
+    height: 35px;
+    background-color: var(--text2);
+    top: -5px;
+    transform: translateX(-50%);
+    display: none;
+}
+
+.slider-marker:after {
+    content: "";
+    position: absolute;
+    top: -8px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    border-bottom: 8px solid var(--text2);
+}
+
+.slider-marker-value {
+    position: absolute;
+    top: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: var(--primary);
+    color: white;
+    padding: 2px 8px;
+    border-radius: 0.25rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .calculator-container {
+        padding: 1.5rem 1rem;
+    }
+    
+    .slider-labels {
+        font-size: 0.75rem;
+    }
+}
+
+/* Ensure calculator fits nicely on mobile */
+@media (max-width: 480px) {
+    .toggle-container {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .input-with-unit {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .input-with-unit span {
+        margin-left: 0;
+        margin-top: 0.375rem;
+    }
+}
+
+/* Dark Theme support from base.css */
+@media (prefers-color-scheme: dark) {
+    .calculator-container {
+        background-color: var(--bg2);
+    }
+    
+    input[type="number"] {
+        background-color: var(--bg-gray);
+        color: var(--text2);
+        border-color: #374151;
+    }
+    
+    .slider-marker {
+        background-color: var(--text2);
+    }
+    
+    .slider-marker:after {
+        border-bottom-color: var(--text2);
+    }
+}

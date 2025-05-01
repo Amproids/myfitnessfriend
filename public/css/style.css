@@ -31,14 +31,14 @@ body {
     padding: 0 1.5rem;
 }
 
-/* Navigation */
-.main-nav {
+/* Header */
+header {
     background-color: var(--primary);
     color: var(--bg2);
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.nav-container {
+.header-container {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -56,11 +56,11 @@ body {
     font-size: 1.25rem;
 }
 
-.nav-links {
+nav {
     display: none;
 }
 
-.nav-links a {
+nav a {
     color: var(--bg2);
     text-decoration: none;
     text-align: center;
@@ -68,7 +68,7 @@ body {
     padding: 0.5rem 1rem;
 }
 
-.nav-links a:hover {
+nav a:hover {
     color: var(--bg1);
 }
 
@@ -489,7 +489,7 @@ body {
 .btn-store,
 .feature-card,
 .activity-card,
-.nav-links a,
+nav a,
 .social-links a {
     transition: all 0.2s ease-in-out;
 }
@@ -528,11 +528,11 @@ body {
 }
 
 /* Navigation hover effects */
-.nav-links a {
+nav a {
     position: relative;
 }
 
-.nav-links a::after {
+nav a::after {
     content: '';
     position: absolute;
     width: 0;
@@ -543,7 +543,7 @@ body {
     transition: all 0.3s ease-in-out;
 }
 
-.nav-links a:hover::after {
+nav a:hover::after {
     width: 100%;
     left: 0;
 }
@@ -565,7 +565,7 @@ body {
 
 /* Media Queries */
 @media (min-width: 768px) {
-    .nav-links {
+    nav {
         display: flex;
         width: 100%;
         justify-content: space-evenly;

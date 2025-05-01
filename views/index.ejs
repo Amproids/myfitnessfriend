@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Fitness Friend | Your Personal Workout Companion</title>
+    <link rel="stylesheet" href="/css/base.css">
+    <link rel="stylesheet" href="/css/home.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="icon" type="image/svg+xml" href="/images/favicon.svg">
+
+    <script src="/js/home.js"></script>
+</head>
+<body>
+    <%- include('partials/header.ejs') %>
+    <main>
+        <!-- Hero Section -->
+        <div class="hero">
+            <div class="hero-content">
+                <h1>Track Your Fitness Journey</h1>
+                <p>Log workouts, track progress, and achieve your fitness goals</p>
+                <button class="btn-primary">Start Your Journey</button>
+            </div>
+        </div>
+
+        <!-- Features Section -->
+        <div class="features">
+            <div class="features-container">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-plus-circle"></i>
+                    </div>
+                    <h3>Quick Log Workout</h3>
+                    <p>Choose from our extensive workout library or create your own custom routine</p>
+                    <button class="btn-link">Start Workout →</button>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-book-open"></i>
+                    </div>
+                    <h3>Workout Library</h3>
+                    <p>Explore hundreds of pre-made workouts for every fitness level</p>
+                    <button class="btn-link">Browse Library →</button>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>Track Progress</h3>
+                    <p>Monitor your improvements with detailed statistics and charts</p>
+                    <button class="btn-link">View Stats →</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Recent Activity Section -->
+        <div class="activity">
+            <div class="activity-container">
+                <h2>Recent Community Activity</h2>
+                <div class="activity-grid">
+                    <div class="activity-card">
+                        <div class="user-info">
+                            <img src="/images/user-icon-female.svg" alt="User Avatar" class="avatar">
+                            <div class="user-details">
+                                <h4>Sarah completed Full Body HIIT</h4>
+                                <p class="time">2 hours ago</p>
+                            </div>
+                        </div>
+                        <p class="activity-text">Great workout! Burned 450 calories in 45 minutes 💪</p>
+                    </div>
+
+                    <div class="activity-card">
+                        <div class="user-info">
+                            <img src="/images/user-icon-male.svg" alt="User Avatar" class="avatar">
+                            <div class="user-details">
+                                <h4>Mike achieved a new PR!</h4>
+                                <p class="time">5 hours ago</p>
+                            </div>
+                        </div>
+                        <p class="activity-text">Just hit 225lbs on bench press! 🎉</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Download App Section -->
+        <div class="app-download">
+            <div class="app-container">
+                <div class="app-content">
+                    <h2>Get the My Fitness Friend App</h2>
+                    <p>Track your workouts anywhere, anytime</p>
+                    <div class="store-buttons">
+                        <button class="btn-store">
+                            <i class="fab fa-apple"></i>
+                            App Store
+                        </button>
+                        <button class="btn-store">
+                            <i class="fab fa-google-play"></i>
+                            Play Store
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- WebSite Development Progress Section-->
+        <div class="dev-progress">
+            <div class="progress-container">
+                <h2>Development Progress</h2>
+                <div class="progress-grid">
+                    <div class="progress-card">
+                        <h3>Feature Status</h3>
+                        <div class="feature-list"></div>
+                    </div>
+                    
+                    <div class="progress-card">
+                        <h3>User Growth</h3>
+                        <div class="user-count">
+                            <div class="count-value">0</div>
+                            <div class="count-label">Active Users</div>
+                            <div class="count-goal">Goal: 1,000 users</div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 0.5%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <%- include('partials/footer.ejs') %>
+</body>
+</html>

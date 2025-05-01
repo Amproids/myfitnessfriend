@@ -1,2 +1,2 @@
 # myfitnessfriend
-THe public repository for the my fitnessfriend web app.
+The public repository for the my fitnessfriend web app.
