@@ -67,7 +67,7 @@ app.get('/api/exercises', async (req, res) => {
 // Test database connection
 pool.connect((err, client, release) => {
   if (err) {
-    return console.error('Error acquiring client', err.stack);
+    return console.error('Error acquiring db client', err.stack);
   }
   console.log('Connected to PostgreSQL database');
   release();

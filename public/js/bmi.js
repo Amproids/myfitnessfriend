@@ -141,7 +141,7 @@ calculateButton.addEventListener('click', () => {
         const bmiData = getBMICategory(bmi);
         
         // Display results
-        resultElement.textContent = `Your BMI is: ${bmi}`;
+        resultElement.innerHTML = `Your BMI is: ${bmi} kg/m&sup2;`;
         bmiCategoryElement.textContent = `Category: ${bmiData.category}`;
         bmiCategoryElement.className = bmiData.class;
         bmiInfoElement.textContent = bmiData.info;
@@ -164,13 +164,13 @@ calculateButton.addEventListener('click', () => {
 weightUnitsDisplay.textContent = weightUnits;
 heightUnitsDisplay.textContent = heightUnits;
 
+// Fix inconsistency in height units display from initial code
+heightUnits = heightUnitsSelector.checked ? 'ft' : 'cm';
+heightUnitsDisplay.textContent = heightUnits;
+
 // Set initial inches input visibility
-if (heightUnits === 'cm') {
+if (heightUnits == 'cm') {
     inchesDisplay.style.display = 'none';
 } else {
     inchesDisplay.style.display = 'inline-flex';
 }
-
-// Fix inconsistency in height units display from initial code
-heightUnits = heightUnitsSelector.checked ? 'ft' : 'cm';
-heightUnitsDisplay.textContent = heightUnits;
