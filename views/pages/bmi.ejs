@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BMI Calculator | My Fitness Friend</title>
+    <link rel="stylesheet" href="/css/normalize.css">
+    <link rel="stylesheet" href="/css/base.css">
+    <link rel="stylesheet" href="/css/bmi.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="icon" type="image/svg+xml" href="/images/favicon.svg">
+    <script src="/js/bmi.js" defer></script>
+</head>
+<body>
+    <%- include('../partials/header.ejs') %>
+    <main>
+        <!-- Hero Section -->
+        <div class="hero">
+            <div class="hero-content">
+                <h1>BMI Calculator</h1>
+                <p>Calculate your Body Mass Index (BMI) to track your fitness progress</p>
+            </div>
+        </div>
+
+        <div class="calculator-container">
+            <div class="input-group">
+                <label for="weight-units-selector">Weight:</label>
+                <div class="toggle-container">
+                    <span class="unit-span">kg</span>
+                    <input type="checkbox" class="unit-toggle" id="weight-units-selector">
+                    <label for="weight-units-selector" class="toggle-switch"></label>
+                    <span class="unit-span">lbs</span>
+                </div>
+                <div class="number-inputs">
+                    <div class="input-with-unit">
+                        <input type="number" id="weight" min="1">
+                        <span class="unit-span" id="weight-units">lbs</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="input-group">
+                <label for="height-units-selector">Height:</label>
+                <div class="toggle-container">
+                    <span>cm</span>
+                    <input type="checkbox" class="unit-toggle" id="height-units-selector">
+                    <label for="height-units-selector" class="toggle-switch"></label>
+                    <span class="unit-span">ft/in</span>
+                </div>
+                <div class="number-inputs">
+                    <div class="input-with-unit">
+                        <input type="number" id="height" min="1">
+                        <span class="unit-span" id="height-units">ft</span>
+                    </div>
+                    <div class="input-with-unit" id="height-inches">
+                        <input type="number" id="inches">
+                        <span class="unit-span">in</span>
+                    </div>
+                </div>
+            </div>
+            
+            <button id="calculate" class="calculate-btn">Calculate BMI</button>
+            
+            <div class="result-container">
+                <p id="result"></p>
+                <div id="bmi-category"></div>
+                <div id="bmi-info"></div>
+                
+                <div class="slider-container">
+                    <div class="slider-track"><i id="skull" class="fa-solid fa-skull"></i></div>
+                    <div class="slider-marker">
+                        <div class="slider-marker-value"></div>
+                    </div>
+                    <div class="slider-labels">
+                        <span>15</span>
+                        <span id="underweight">18.5</span>
+                        <span id="normal">25</span>
+                        <span>30</span>
+                        <span>35</span>
+                        <span id="obeseii">40</span>
+                        <span>60</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="bmi-chart">
+                <h3>BMI Categories</h3>
+                <ul>
+                    <li><span class="category-indicator underweight"></span> Underweight: BMI less than 18.5</li>
+                    <li><span class="category-indicator normal"></span> Normal weight: BMI 18.5 to 24.9</li>
+                    <li><span class="category-indicator overweight"></span> Overweight: BMI 25 to 29.9</li>
+                    <li><span class="category-indicator obese"></span> Obese Class I: BMI 30 to 34.9</li>
+                    <li><span class="category-indicator obese2"></span> Obese Class II: BMI 35 to 39.9</li>
+                    <li><span class="category-indicator obese3"></span> Obese Class III: BMI 40 or higher</li>
+                </ul>
+                <p class="disclaimer">Note: BMI is a screening tool, not a diagnostic tool. Consult with a healthcare provider for a complete health assessment.</p>
+            </div>
+        </div>
+    </main>
+    <%- include('../partials/footer.ejs') %>
+</body>
+</html>

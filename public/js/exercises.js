@@ -1,5 +1,5 @@
-// client/src/scripts/exercises.js
-import exerciseService from '../services/exerciseService.js';
+// /js/exercises.js
+import exerciseService from '/services/exerciseService.js';
 
 let currentFilters = {
     bodyPart: 'all',

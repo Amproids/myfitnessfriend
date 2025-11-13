@@ -1,0 +1,289 @@
+/* 
+* Exercises.css
+* Contains styles specifically for the exercise browser:
+* - Exercise browser layout
+* - Search and filter components
+* - Exercise cards and grid
+* - Loading states and animations
+* - Error states
+*/
+
+/* Exercise Browser Layout */
+.exercise-browser {
+    padding: 2rem 1.5rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Filter Container */
+.filter-container {
+    background-color: var(--bg2);
+    padding: 1.5rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 2rem;
+}
+
+/* Search Bar */
+.search-bar {
+    position: relative;
+    margin-bottom: 1rem;
+}
+
+.search-icon {
+    position: absolute;
+    left: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text1);
+}
+
+#exerciseSearch {
+    width: 100%;
+    padding: 0.75rem 1rem 0.75rem 2.5rem;
+    border: 1px solid #E5E7EB;
+    border-radius: 0.5rem;
+    font-size: 1rem;
+    background-color: var(--bg2);
+    color: var(--text2);
+    transition: all 0.2s ease;
+}
+
+#exerciseSearch:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 2px var(--primary-light);
+}
+
+/* Filter Options */
+.filter-options {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.filter-select {
+    flex: 1;
+    min-width: 200px;
+    padding: 0.75rem 1rem;
+    border: 1px solid #E5E7EB;
+    border-radius: 0.5rem;
+    font-size: 1rem;
+    background-color: var(--bg2);
+    color: var(--text2);
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.filter-select:hover {
+    border-color: var(--primary-light);
+}
+
+.filter-select:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 2px var(--primary-light);
+}
+
+/* Favorites Button */
+.btn-favorites {
+    padding: 0.75rem 1.5rem;
+    background-color: var(--bg2);
+    color: var(--text2);
+    border: 1px solid #E5E7EB;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.btn-favorites:hover {
+    background-color: var(--bg1);
+    border-color: var(--primary);
+    color: var(--primary);
+}
+
+.btn-favorites i {
+    color: var(--primary);
+}
+
+/* Exercise Grid */
+.exercise-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+
+/* Exercise Card */
+.exercise-card {
+    background-color: var(--bg2);
+    border-radius: 0.5rem;
+    overflow: hidden;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: all 0.2s ease-in-out;
+}
+
+.exercise-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
+}
+
+.exercise-image {
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+    background-color: var(--bg-gray);
+}
+
+.exercise-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.exercise-content {
+    padding: 1.5rem;
+}
+
+.exercise-content h3 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: var(--text2);
+}
+
+.exercise-content p {
+    color: var(--text1);
+    margin-bottom: 0.5rem;
+}
+
+/* Exercise Header with Favorite Button */
+.exercise-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 1rem;
+}
+
+.favorite-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem;
+    transition: all 0.2s ease;
+    color: var(--text1);
+}
+
+.favorite-button:hover {
+    transform: scale(1.1);
+}
+
+.favorite-btn {
+    font-size: 1.25rem;
+}
+
+.favorite-btn.active {
+    color: #EF4444; /* Red-500 */
+}
+
+/* Loading States */
+.skeleton {
+    animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+.skeleton-image {
+    width: 100%;
+    height: 200px;
+    background-color: var(--bg-gray);
+}
+
+.skeleton-text {
+    height: 1rem;
+    background-color: var(--bg-gray);
+    margin-bottom: 0.5rem;
+    border-radius: 0.25rem;
+}
+
+@keyframes pulse {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: .5;
+    }
+}
+
+/* Loading Spinner */
+.loading-spinner {
+    display: none;
+    text-align: center;
+    padding: 2rem;
+}
+
+.loading-spinner i {
+    font-size: 2rem;
+    color: var(--primary);
+}
+
+/* Error and No Results States */
+.error-message,
+.no-results {
+    text-align: center;
+    padding: 2rem;
+    color: var(--text1);
+    background-color: var(--bg2);
+    border-radius: 0.5rem;
+    margin-top: 2rem;
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+    .filter-options {
+        flex-direction: column;
+    }
+    
+    .filter-select,
+    .btn-favorites {
+        width: 100%;
+    }
+    
+    .exercise-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Dark Mode Adjustments */
+@media (prefers-color-scheme: dark) {
+    .exercise-card {
+        border: 1px solid #374151;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    }
+    
+    #exerciseSearch,
+    .filter-select {
+        border-color: #374151;
+        background-color: var(--bg2);
+    }
+    
+    #exerciseSearch:focus,
+    .filter-select:focus {
+        border-color: var(--primary-light);
+    }
+    
+    .skeleton-image,
+    .skeleton-text {
+        background-color: #374151;
+    }
+    
+    .btn-favorites {
+        border-color: #374151;
+    }
+    
+    .btn-favorites:hover {
+        background-color: var(--bg1);
+        border-color: var(--primary-light);
+    }
+}

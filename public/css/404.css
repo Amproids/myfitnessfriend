@@ -1,0 +1,35 @@
+
+.not-found {
+    padding: 2rem;
+    max-width: 500px;
+    text-align: center;
+    margin: 0 auto;
+}
+
+h1 {
+    font-size: 6rem;
+    margin: 0;
+    color: var(--primary);
+}
+
+p {
+    font-size: 1.25rem;
+    color: var(--text2);
+    margin: 1rem 0 2rem;
+}
+
+.back-home {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    background-color: var(--primary);
+    color: var(--bg2);
+    text-decoration: none;
+    border-radius: 0.5rem;
+    font-weight: 600;
+    transition: transform 0.2s, opacity 0.2s;
+}
+
+.back-home:hover {
+    opacity: 0.9;
+    transform: translateY(-2px);
+}
