@@ -36,6 +36,7 @@
 .feature-icon {
     color: var(--primary);
     font-size: 2.5rem;
+    margin: 0;
     margin-bottom: 1rem;
 }
 
@@ -48,6 +49,14 @@
 .feature-card p {
     color: var(--text1);
     margin-bottom: 1rem;
+}
+
+/* Hero Section */
+.hero-content {
+    background-color: transparent;
+    color: inherit;
+    box-shadow: none;
+    padding: 0;
 }
 
 /* Activity Section */
@@ -92,6 +101,10 @@
     align-items: center;
     gap: 1rem;
     margin-bottom: 1rem;
+    background-color: transparent;
+    color: inherit;
+    box-shadow: none;
+    padding: 0;
 }
 
 .avatar {
@@ -108,6 +121,8 @@
 .time {
     color: var(--text1);
     font-size: 0.875rem;
+    font-weight: normal;
+    display: inline;
 }
 
 /* App Download Section */
@@ -139,9 +154,11 @@
 }
 
 .store-buttons {
-    display: flex;
+    display: flex !important;
     gap: 1rem;
     margin-top: 1rem;
+    background-color: transparent;
+    padding: 0;
 }
 
 .btn-store {
@@ -243,12 +260,12 @@
 }
 
 .status-icon.complete {
-    background-color: #10B981;  /* Emerald-500 */
+    background-color: #10B981;
     color: white;
 }
 
 .status-icon.in-progress {
-    background-color: #F59E0B;  /* Amber-500 */
+    background-color: #F59E0B;
     color: white;
 }
 
@@ -266,6 +283,13 @@
 .user-count {
     text-align: center;
     padding: 1rem;
+    margin: 0;
+}
+
+.user-count dt,
+.user-count dd {
+    margin: 0;
+    font-weight: normal;
 }
 
 .count-value {
