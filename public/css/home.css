@@ -230,7 +230,7 @@
 }
 
 /* Feature List Styles */
-.feature-list {
+#feature-list {
     display: flex;
     flex-direction: column;
     gap: 1rem;

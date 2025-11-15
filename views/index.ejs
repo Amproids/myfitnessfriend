@@ -8,7 +8,6 @@
     <link rel="stylesheet" href="/css/home.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link rel="icon" type="image/svg+xml" href="/images/favicon.svg">
-    <script src="/js/home.js"></script>
 </head>
 <body>
     <%- include('partials/header.ejs') %>
@@ -111,11 +110,6 @@
                 <h2>Development Progress</h2>
                 <div class="progress-grid">
                     <article class="progress-card">
-                        <h3>Feature Status</h3>
-                        <ul class="feature-list"></ul>
-                    </article>
-                    
-                    <article class="progress-card">
                         <h3>User Growth</h3>
                         <dl class="user-count">
                             <dt class="count-value">0</dt>
@@ -126,11 +120,17 @@
                             <div class="progress-fill" style="width: 0.5%"></div>
                         </div>
                     </article>
+
+                    <article class="progress-card">
+                        <h3>Feature Status</h3>
+                        <ul id="feature-list"></ul>
+                    </article>
                 </div>
             </div>
         </section>
     </main>
     
     <%- include('partials/footer.ejs') %>
+    <script src="/js/home.js"></script>
 </body>
 </html>
