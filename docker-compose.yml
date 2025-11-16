@@ -5,7 +5,7 @@ services:
   app:
     build: . # Uses the Dockerfile in the current directory
     ports:
-      - "3001:3001"
+      - "3002:3001"
     environment:
       # Pass connection details to Node app
       DATABASE_URL: postgres://user:password@db:5432/myfitnessdb
