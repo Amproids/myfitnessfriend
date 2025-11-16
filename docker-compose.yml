@@ -14,11 +14,12 @@ services:
       - db
     volumes:
       - .:/app
+    restart: unless-stopped
 
   # 2. PostgreSQL Database
   db:
     image: postgres:16-alpine # <-- Corrected typo here (apline -> alpine)
-    restart: always
+    restart: unless-stopped
     environment:
       # These are the connection details for the database
       POSTGRES_USER: user
