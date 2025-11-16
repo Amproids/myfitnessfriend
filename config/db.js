@@ -1,12 +1,14 @@
 const { Pool } = require('pg');
-require('dotenv').config();
+const connectionString = process.env.DATABASE_URL;
+
+if (!connectionString) {
+    console.error('Error: DATABASE_URL environment variable is not set');
+    throw new Error('DATABASE_URL environment variable is not set');
+}
 
 const pool = new Pool({
-  user: process.env.DB_USER,
-  password: process.env.DB_PASSWORD,
-  host: process.env.DB_HOST,
-  port: process.env.DB_PORT,
-  database: process.env.DB_DATABASE
-});
+    connectionString: connectionString,
+    // Other config settings go here.
+})
 
 module.exports = pool;

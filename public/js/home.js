@@ -28,7 +28,7 @@ const getStatusIcon = (status) => {
 };
 
 // Clear existing content
-featuresElement.innerHTML = 'Hello Test';
+featuresElement.innerHTML = '';
 
 // Create and append feature items
 features.forEach(feature => {

@@ -1,0 +1,36 @@
+version: '3.8'
+
+services:
+  # 1. Node.js Application
+  app:
+    build: . # Uses the Dockerfile in the current directory
+    ports:
+      - "3001:3001"
+    environment:
+      # Pass connection details to Node app
+      DATABASE_URL: postgres://user:password@db:5432/myfitnessdb
+      PORT: 3001
+    depends_on:
+      - db
+    volumes:
+      - .:/app
+
+  # 2. PostgreSQL Database
+  db:
+    image: postgres:16-alpine # <-- Corrected typo here (apline -> alpine)
+    restart: always
+    environment:
+      # These are the connection details for the database
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: myfitnessdb
+    ports:
+      - "5432:5432" # Optional port to map for direct access.
+    volumes:
+      # Using the named volume for persistence
+      - pgdata:/var/lib/postgresql/data
+
+# 3. Persistent Volume Definition
+volumes:
+  pgdata:
+    # Automatically managed by docker.
