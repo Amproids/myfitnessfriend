@@ -1,0 +1,404 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+CAUTION: Do not modify this file unless you know what you are doing.
+ Unexpected results may occur if the code is changed deliberately.
+-->
+<dbmodel pgmodeler-ver="1.1.6" use-changelog="false" max-obj-count="10"
+	 last-position="111,-33" last-zoom="0.8" scene-rect="-368,-41,1770.8,1076.8"
+	 default-schema="public" default-owner="postgres"
+	 layers="Default layer"
+	 active-layers="0"
+	 layer-name-colors="#000000"
+	 layer-rect-colors="#b4b4b4"
+	 show-layer-names="false" show-layer-rects="false">
+<tablespace name="Users" directory="'myfitnessfriend'">
+	<role name="postgres"/>
+</tablespace>
+
+<database name="new_database" is-template="false" allow-conns="true">
+</database>
+
+<schema name="public" layers="0" fill-color="#e1e1e1" name-color="#000000" sql-disabled="true">
+</schema>
+
+<schema name="MyFitnessDB" layers="0" rect-visible="true" fill-color="#e1e1e1" name-color="#31363b">
+	<role name="postgres"/>
+</schema>
+
+<table name="Users" layers="0" collapse-mode="2" max-obj-count="15" z-value="0">
+	<schema name="&quot;MyFitnessDB&quot;"/>
+	<role name="postgres"/>
+	<position x="220" y="0"/>
+	<column name="user_id" not-null="true">
+		<type name="serial" length="0"/>
+	</column>
+	<column name="username" not-null="true">
+		<type name="varchar" length="50"/>
+	</column>
+	<column name="email" not-null="true">
+		<type name="varchar" length="255"/>
+	</column>
+	<column name="password_hash" not-null="true">
+		<type name="varchar" length="255"/>
+	</column>
+	<column name="account_validated" default-value="FALSE">
+		<type name="boolean" length="0"/>
+	</column>
+	<column name="first_name" not-null="true">
+		<type name="varchar" length="100"/>
+	</column>
+	<column name="last_name">
+		<type name="varchar" length="100"/>
+	</column>
+	<column name="date_of_birth" not-null="true">
+		<type name="date" length="0"/>
+	</column>
+	<column name="gender" not-null="true">
+		<type name="&quot;MyFitnessDB&quot;.gender" length="1"/>
+	</column>
+	<column name="height_cm">
+		<type name="smallint" length="0"/>
+		<comment> <![CDATA[Auto converted for imperial users]]> </comment>
+	</column>
+	<column name="created_at" not-null="true" default-value="CURRENT_TIMESTAMP">
+		<type name="timestamptz" length="0"/>
+	</column>
+	<column name="last_active" not-null="true">
+		<type name="timestamptz" length="0"/>
+	</column>
+	<column name="units" not-null="true">
+		<type name="&quot;MyFitnessDB&quot;.units" length="0"/>
+	</column>
+	<constraint name="Users_pk" type="pk-constr" table="&quot;MyFitnessDB&quot;.&quot;Users&quot;">
+		<columns names="user_id" ref-type="src-columns"/>
+	</constraint>
+	<constraint name="username_uq" type="uq-constr" table="&quot;MyFitnessDB&quot;.&quot;Users&quot;">
+		<columns names="username" ref-type="src-columns"/>
+	</constraint>
+	<constraint name="email_uq" type="uq-constr" table="&quot;MyFitnessDB&quot;.&quot;Users&quot;">
+		<columns names="email" ref-type="src-columns"/>
+	</constraint>
+	<constraint name="username_lower" type="ck-constr" table="&quot;MyFitnessDB&quot;.&quot;Users&quot;">
+			<expression> <![CDATA[username = lower(username)]]> </expression>
+	</constraint>
+	<constraint name="height_check" type="ck-constr" table="&quot;MyFitnessDB&quot;.&quot;Users&quot;">
+			<expression> <![CDATA[(height_cm BETWEEN 50 AND 300)]]> </expression>
+	</constraint>
+	<constraint name="dob_check" type="ck-constr" table="&quot;MyFitnessDB&quot;.&quot;Users&quot;">
+			<expression> <![CDATA[date_of_birth >= '1900-01-01' AND date_of_birth <= CURRENT_DATE - INTERVAL '13 years']]> </expression>
+	</constraint>
+	<constraint name="email_format_check" type="ck-constr" table="&quot;MyFitnessDB&quot;.&quot;Users&quot;">
+			<expression> <![CDATA[email ~* '^[^@]+@[^@]+\.[^@]+$']]> </expression>
+	</constraint>
+</table>
+
+<table name="Exercises" layers="0" collapse-mode="2" max-obj-count="9" z-value="0">
+	<schema name="&quot;MyFitnessDB&quot;"/>
+	<role name="postgres"/>
+	<position x="-340" y="380"/>
+	<column name="exercise_id" not-null="true">
+		<type name="serial" length="0"/>
+	</column>
+	<column name="exercise_name" not-null="true">
+		<type name="varchar" length="200"/>
+	</column>
+	<column name="exercise_metric" not-null="true">
+		<type name="&quot;MyFitnessDB&quot;.exercise_metric" length="0"/>
+	</column>
+	<column name="uses_weights" not-null="true">
+		<type name="boolean" length="0"/>
+	</column>
+	<column name="notes">
+		<type name="text" length="0"/>
+	</column>
+	<column name="instructions" not-null="true">
+		<type name="text" length="0"/>
+	</column>
+	<column name="difficulty_level" not-null="true">
+		<type name="smallint" length="0"/>
+		<comment> <![CDATA[Complexity of workout/technique difficulty: 1 - Beginner, 2 - Intermediate, 3 - Hard]]> </comment>
+	</column>
+	<column name="tags" not-null="true">
+		<type name="jsonb" length="0"/>
+		<comment> <![CDATA[/* 
+EXERCISE TAGS - Use any combination in JSONB array
+
+MOVEMENT TYPES:
+- strength, cardio, flexibility, balance, coordination, power, endurance
+
+EQUIPMENT:
+- bodyweight, barbell, dumbbell, kettlebell, resistance_band, cable_machine, 
+- smith_machine, pull_up_bar, dip_bars, medicine_ball, stability_ball, 
+- bosu_ball, foam_roller, treadmill, bike, rowing_machine, elliptical
+
+BODY PARTS:
+- upper_body, lower_body, full_body, core, chest, back, shoulders, arms, 
+- biceps, triceps, forearms, abs, glutes, quads, hamstrings, calves, neck
+
+TRAINING STYLE:
+- circuit, hiit, tabata, superset, dropset, pyramid, isometric, plyometric,
+- compound, isolation, unilateral, bilateral, explosive, slow_tempo
+
+SPECIAL CATEGORIES:
+- rehabilitation, pregnancy_safe, senior_friendly, low_impact, high_impact,
+- sports_specific, functional, powerlifting, bodybuilding, crossfit, yoga,
+- pilates, martial_arts, dance
+
+EXAMPLE:
+- Push-ups: ["strength", "bodyweight", "chest", "triceps", "upper_body", "compound", "beginner", "home"]
+*/]]> </comment>
+	</column>
+	<constraint name="Exercises_pk" type="pk-constr" table="&quot;MyFitnessDB&quot;.&quot;Exercises&quot;">
+		<columns names="exercise_id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="Workout_History" layers="0" collapse-mode="2" max-obj-count="9" z-value="0">
+	<schema name="&quot;MyFitnessDB&quot;"/>
+	<role name="postgres"/>
+	<position x="880" y="80"/>
+	<column name="session_id" not-null="true">
+		<type name="bigserial" length="0"/>
+	</column>
+	<column name="workout_date" not-null="true">
+		<type name="date" length="0"/>
+	</column>
+	<column name="session_name" not-null="true">
+		<type name="varchar" length="200"/>
+	</column>
+	<column name="total_duration_minutes">
+		<type name="smallint" length="0"/>
+	</column>
+	<column name="session_notes">
+		<type name="text" length="0"/>
+	</column>
+	<column name="created_at" not-null="true" default-value="CURRENT_TIMESTAMP">
+		<type name="timestamptz" length="0"/>
+	</column>
+	<constraint name="Workout_History_pk" type="pk-constr" table="&quot;MyFitnessDB&quot;.&quot;Workout_History&quot;">
+		<columns names="session_id" ref-type="src-columns"/>
+	</constraint>
+
+	<customidxs object-type="column">
+		<object name="routine_id_Routines" index="2"/>
+		<object name="user_id_Users" index="1"/>
+	</customidxs>
+	<customidxs object-type="constraint">
+		<object name="Routines_fk" index="2"/>
+		<object name="Users_fk" index="1"/>
+	</customidxs></table>
+
+<table name="Session_Exercises" layers="0" collapse-mode="2" max-obj-count="6" z-value="0">
+	<schema name="&quot;MyFitnessDB&quot;"/>
+	<role name="postgres"/>
+	<position x="280" y="660"/>
+	<column name="workout_exercise_id" not-null="true">
+		<type name="bigserial" length="0"/>
+	</column>
+	<column name="sets">
+		<type name="smallint" length="0"/>
+	</column>
+	<column name="reps_per_set">
+		<type name="smallint" length="0"/>
+	</column>
+	<column name="weight_used_kg">
+		<type name="decimal" length="0"/>
+	</column>
+	<column name="duration">
+		<type name="decimal" length="0"/>
+	</column>
+	<constraint name="Workout_Exercises_pk" type="pk-constr" table="&quot;MyFitnessDB&quot;.&quot;Session_Exercises&quot;">
+		<columns names="workout_exercise_id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="Measurement_Log" layers="0" collapse-mode="2" max-obj-count="7" z-value="0">
+	<schema name="&quot;MyFitnessDB&quot;"/>
+	<role name="postgres"/>
+	<position x="-80" y="180"/>
+	<column name="log_id" not-null="true">
+		<type name="bigserial" length="0"/>
+	</column>
+	<column name="log_date" not-null="true">
+		<type name="date" length="0"/>
+	</column>
+	<column name="weight_kg">
+		<type name="decimal" length="0"/>
+	</column>
+	<column name="bodyfat_percent">
+		<type name="decimal" length="0"/>
+	</column>
+	<column name="muscle_mass_kg">
+		<type name="decimal" length="0"/>
+	</column>
+	<column name="waist_cm">
+		<type name="decimal" length="0"/>
+	</column>
+	<constraint name="User_Body_Data_pk" type="pk-constr" table="&quot;MyFitnessDB&quot;.&quot;Measurement_Log&quot;">
+		<columns names="log_id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="Routines" layers="0" collapse-mode="2" max-obj-count="9" z-value="0">
+	<schema name="&quot;MyFitnessDB&quot;"/>
+	<role name="postgres"/>
+	<position x="940" y="660"/>
+	<column name="routine_id" not-null="true">
+		<type name="bigserial" length="0"/>
+	</column>
+	<column name="session_name" not-null="true">
+		<type name="varchar" length="200"/>
+	</column>
+	<column name="created_at" not-null="true" default-value="CURRENT_TIMESTAMP">
+		<type name="timestamptz" length="0"/>
+	</column>
+	<column name="total_duration_minutes">
+		<type name="smallint" length="0"/>
+	</column>
+	<column name="times_used" not-null="true">
+		<type name="bigint" length="0"/>
+	</column>
+	<column name="public" not-null="true">
+		<type name="boolean" length="0"/>
+	</column>
+	<column name="rating">
+		<type name="decimal" length="0"/>
+	</column>
+	<column name="notes">
+		<type name="text" length="0"/>
+	</column>
+	<constraint name="Routine_pk" type="pk-constr" table="&quot;MyFitnessDB&quot;.&quot;Routines&quot;">
+		<columns names="routine_id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="Routine_Exercises" layers="0" collapse-mode="2" max-obj-count="4" z-value="0">
+	<schema name="&quot;MyFitnessDB&quot;"/>
+	<role name="postgres"/>
+	<position x="300" y="820"/>
+	<column name="sets">
+		<type name="smallint" length="0"/>
+	</column>
+	<column name="reps_per_set">
+		<type name="smallint" length="0"/>
+	</column>
+	<column name="weight_used_kg">
+		<type name="decimal" length="0"/>
+	</column>
+	<column name="duration_minutes">
+		<type name="decimal" length="0"/>
+	</column>
+</table>
+
+<usertype name="exercise_metric" configuration="enumeration">
+	<schema name="&quot;MyFitnessDB&quot;"/>
+	<role name="postgres"/>
+	<enumeration label="duration"/>
+	<enumeration label="reps_sets"/>
+</usertype>
+
+<usertype name="gender" configuration="enumeration">
+	<schema name="&quot;MyFitnessDB&quot;"/>
+	<role name="postgres"/>
+	<enumeration label="male"/>
+	<enumeration label="female"/>
+</usertype>
+
+<usertype name="units" configuration="enumeration">
+	<schema name="&quot;MyFitnessDB&quot;"/>
+	<role name="postgres"/>
+	<enumeration label="metric"/>
+	<enumeration label="imperial"/>
+</usertype>
+
+<index name="users_last_active_idx" table="&quot;MyFitnessDB&quot;.&quot;Users&quot;"
+	 concurrent="false" unique="false" fast-update="false" buffering="false" nulls-not-distinct="false"
+	 index-type="btree" factor="0">
+		<idxelement use-sorting="false">
+			<column name="last_active"/>
+		</idxelement>
+</index>
+
+<relationship name="Users_have_Workouts" type="rel1n" layers="0"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 custom-color="#240b1a"
+	 src-table="&quot;MyFitnessDB&quot;.&quot;Users&quot;"
+	 dst-table="&quot;MyFitnessDB&quot;.&quot;Workout_History&quot;"
+	 src-required="true" dst-required="false">
+	<label ref-type="name-label">
+		<position x="16.1108" y="-87.9786"/>
+	</label>
+</relationship>
+
+<relationship name="Routines_can_be_used_for_many_Workout_Histories" type="rel1n" layers="0"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 custom-color="#3aa970"
+	 src-table="&quot;MyFitnessDB&quot;.&quot;Routines&quot;"
+	 dst-table="&quot;MyFitnessDB&quot;.&quot;Workout_History&quot;"
+	 src-required="false" dst-required="false">
+	<label ref-type="name-label">
+		<position x="0.420596" y="-29.153"/>
+	</label>
+</relationship>
+
+<table name="Favorite_User_Exercises" layers="0" collapse-mode="2" max-obj-count="2" z-value="0">
+	<schema name="&quot;MyFitnessDB&quot;"/>
+	<role name="postgres"/>
+	<position x="240" y="480"/>
+</table>
+
+<relationship name="Users_has_many_Favorite_User_Exercises" type="rel1n" layers="0"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 custom-color="#f91f7a"
+	 src-table="&quot;MyFitnessDB&quot;.&quot;Users&quot;"
+	 dst-table="&quot;MyFitnessDB&quot;.&quot;Favorite_User_Exercises&quot;"
+	 src-required="true" dst-required="false">
+	<label ref-type="name-label">
+		<position x="19.9332" y="-54.753"/>
+	</label>
+</relationship>
+
+<relationship name="Exercises_has_many_Favorite_User_Exercises" type="rel1n" layers="0"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 custom-color="#e6c02a"
+	 src-table="&quot;MyFitnessDB&quot;.&quot;Exercises&quot;"
+	 dst-table="&quot;MyFitnessDB&quot;.&quot;Favorite_User_Exercises&quot;"
+	 src-required="true" dst-required="false"/>
+
+<table name="Favorite_User_Routines" layers="0" collapse-mode="2" max-obj-count="2" z-value="0">
+	<schema name="&quot;MyFitnessDB&quot;"/>
+	<role name="postgres"/>
+	<position x="640" y="440"/>
+</table>
+
+<relationship name="Users_has_many_Favorite_User_Routines" type="rel1n" layers="0"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 custom-color="#72821a"
+	 src-table="&quot;MyFitnessDB&quot;.&quot;Users&quot;"
+	 dst-table="&quot;MyFitnessDB&quot;.&quot;Favorite_User_Routines&quot;"
+	 src-required="true" dst-required="false">
+	<label ref-type="name-label">
+		<position x="0" y="0"/>
+	</label>
+</relationship>
+
+<relationship name="Routines_has_many_Favorite_User_Routines" type="rel1n" layers="0"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 custom-color="#497da5"
+	 src-table="&quot;MyFitnessDB&quot;.&quot;Routines&quot;"
+	 dst-table="&quot;MyFitnessDB&quot;.&quot;Favorite_User_Routines&quot;"
+	 src-required="false" dst-required="false"/>
+
+</dbmodel>
