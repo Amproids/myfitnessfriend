@@ -56,7 +56,7 @@ const getStatusIcon = (status) => {
         case 'pending':
             return '<i class="fas fa-circle"></i>';
         case 'planned':
-            return '<i class="fas fa-clock"></i>';
+            return '<i class="fas fa-calendar"></i>';
         default:
             return '<i class="fas fa-circle"></i>';
     }
