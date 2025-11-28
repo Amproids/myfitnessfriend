@@ -1,0 +1,2 @@
+This DB part of my project is rapidly expanding the scope and vison of my project, but all in good ways I think.
+I really like the idea of reddit style sharing workouts, and then the system tracks a workout's rating, and how often it's actually used. I may need to get the ideas all out in a document like this though, and then focus on our MVP. in fact the sharing might not be a part of the app at all. Not sure what to do exactly. lets focus on the core data tables.

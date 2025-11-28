@@ -22,7 +22,7 @@
 
 .feature-card {
     background-color: var(--bg2);
-    padding: 1.5rem;
+    padding: 2rem;
     border-radius: 0.5rem;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     transition: all 0.2s ease-in-out;
@@ -33,11 +33,24 @@
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
 }
 
-.feature-icon {
+.status-icon {
     color: var(--primary);
-    font-size: 2.5rem;
+    font-size: 5rem;
     margin: 0;
     margin-bottom: 1rem;
+}
+.feature-name{
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.feature-description{
+    color: var(--text1);
+    display: inline-block;
+    width: 100%;
+    margin-left: 2rem;
+
 }
 
 .feature-card h3 {
