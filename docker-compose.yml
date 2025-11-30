@@ -1,0 +1,43 @@
+services:
+  # 1. Node.js Application
+  app:
+    build: . # Uses the Dockerfile in the current directory
+    ports:
+      - "3002:3001"
+    environment:
+      # Pass connection details to Node app
+      DATABASE_URL: postgres://my_fitness_db:mypassword@db:5432/myfitnessdb
+      PORT: 3001
+      NODE_ENV: development
+    depends_on:
+      db:
+        condition: service_healthy # Wait for the database to be ready
+    volumes:
+      - .:/app
+      - /app/node_modules # Prevent overwriting node_modules 
+    restart: unless-stopped
+
+  # 2. PostgreSQL Database
+  db:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: my_fitness_db
+      POSTGRES_PASSWORD: mypassword
+      POSTGRES_DB: my_fitness_db
+    ports:
+      - "5433:5432" # Optional port to map for direct access, different to not conflict with local pgSQL
+    volumes:
+      # Using the named volume for persistence
+      - pgdata:/var/lib/postgresql/data
+      - ./database/schema.sql:/docker-entrypoint-initdb.d/01-schema.sql  # Auto-run schema
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U my_fitness_db -d my_fitness_db"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+# 3. Persistent Volume Definition
+volumes:
+  pgdata:
+    # Automatically managed by docker.
